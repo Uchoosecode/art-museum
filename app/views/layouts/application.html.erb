@@ -15,12 +15,13 @@
     <p class="alert"><%= alert %></p>
 
 
-  <h2>Welcome To the Art Gallery </h2>
+  <h2>Welcome To the Art Gallery <%= user_signed_in? ? current_user.name : "Guest" %></h2>
     <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
 
      <div class="nav">
       <%= link_to "Log In", new_user_session_path %>	 
-      <%= link_to "Sign Up", new_user_registration_path  %>	  
+      <%= link_to "Sign Up", new_user_registration_path  %>	
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete %>  
 
     <%= yield %>
   </body>
