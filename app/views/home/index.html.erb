@@ -1,1 +1,11 @@
-<h2>Sign Up or Log In to build your Gallery</h2>
+<% if !user_signed_in? %>
+<h2>Sign Up or Log In to build your Gallery </h2>
+
+<% else %>
+<%= link_to "Edit Profile", edit_user_registration_path %>
+<div><p>Click below to add to your Gallery </p>
+<%= link_to "Add To Gallery", new_gallery_path %></div><br>
+
+<div><%= button_to "Delete Account", user_registration_path, method: :delete %></div>
+
+<% end %>
