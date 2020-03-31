@@ -5,7 +5,7 @@ class CreateArtworks < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :category
       t.string :medium
-      t.text :image_url
+      t.text :image
       t.text :comment
 
       t.belongs_to :gallery, null: false, foreign_key: true

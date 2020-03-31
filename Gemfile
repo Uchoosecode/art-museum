@@ -38,6 +38,7 @@ gem 'omniauth-google-oauth2'
 # Protects API private keys from outsiders
 gem 'dotenv-rails'
 
+gem 'simple_form', '~> 5.0', '>= 5.0.2'
 
 group :development, :test do
   # Call 'byebug' or 'binding.pry anywhere in the code to stop execution and get a debugger console
@@ -52,6 +53,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Create better error messages
+  gem 'better_errors', '~> 2.6'
+  gem 'binding_of_caller', '~> 0.8.0'
 end
 
 group :test do
