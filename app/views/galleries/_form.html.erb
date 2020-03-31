@@ -1,0 +1,55 @@
+<% if @gallery.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@gallery.errors.count, "error") %>
+      prohibited this post from being saved:
+    </h2>
+ 
+    <ul>
+    <% @gallery.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @gallery do |f| %>
+
+    <div class="field">
+        <%= f.label :title %> <br>
+        <%= f.text_field :title %> <br>
+    </div>
+
+    <div class="field">
+        <%= f.fields_for :categories do |cat| %>
+            <%= cat.label :category %> <br>
+            <%= cat.text_field :name, list: "categories_autocomplete" %>
+                <datalist id="categories_autocomplete">
+                    <% Category.all.each do |category| %>
+                        <option value="<%= category.name %>">
+                    <% end %>
+                </datalist> <br>
+        <% end %>
+    </div>
+
+    <div class="field">
+        <%= f.fields_for :media do |m| %>
+                <%= m.label :medium %> <br>
+                <%= m.collection_select :name, Medium.all, :id, :name %> <br>
+        <% end %>
+    </div>
+
+    <div class="field">
+        <%= f.label :description %> <br>
+        <%= f.text_area :description %> <br>
+    </div>
+
+    <div class="field">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit%> <br>
+    </div>
+
+<% end %>
