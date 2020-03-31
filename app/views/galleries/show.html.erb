@@ -1,0 +1,16 @@
+<%= link_to "Edit Gallery", edit_gallery_path %>
+
+<h1 class="g_title" ><%= @gallery.title %> Gallery</h1><br>
+<div>
+    <h3>Gallery Description</h3>
+    
+    <p> <%= @gallery.description %> </p>
+</div>
+
+<div>
+    <%= link_to "Add Artwork", new_gallery_artwork_path(@gallery) %>
+    <%= link_to "Delete Artwork", gallery_artwork_path(@gallery), method: :delete %>
+</div>
+
+
+<div><%= button_to "Delete Gallery", gallery_path, method: :delete %></div> 
