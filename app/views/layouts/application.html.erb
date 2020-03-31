@@ -13,8 +13,7 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-
+    
   <h2>Welcome To the Art Gallery <%= user_signed_in? ? current_user.name : "Guest" %></h2>
  
     <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
