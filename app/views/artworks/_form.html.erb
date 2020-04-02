@@ -1,0 +1,47 @@
+<h3>Add Your Artwork</h3>
+    <% if @artwork.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+            <%= pluralize(@artwork.errors.count, "error") %>
+            prohibited this post from being saved:
+            </h2>
+ 
+        <ul>
+            <% @artwork.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+<%# binding.pry %>
+    <%= form_for([@gallery, @gallery.artworks.build], local: true) do |f|%>
+
+        <%= f.hidden_field :gallery_id %><br>
+
+            <div class="field">
+                <%= f.label :title%>
+                <%= f.text_field :title%>
+            </div>
+
+       
+          
+             <div class="field">
+                <%= f.label :category %> <br>
+                <%= f.collection_select :category_id, Category.all, :id, :name %> <br>
+            </div>
+
+            <div class="field">
+                <%= f.label :medium %> <br>
+                <%= f.collection_select :medium_id, Medium.all, :id, :name %> <br>
+            </div>
+
+            <div class="field">
+                <%= f.label :image %>
+                <%= f.file_field :image %>
+            </div>
+
+            <div class="actions">
+                <%= f.submit %>
+            </div>
+
+    <% end %>
