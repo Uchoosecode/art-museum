@@ -1,0 +1,3 @@
+<% @galleries.all.each do |g|%>
+<li><%= link_to "#{g.title}", gallery_path(g) %> </li>
+<% end %>
