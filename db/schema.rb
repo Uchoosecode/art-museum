@@ -35,24 +35,20 @@ ActiveRecord::Schema.define(version: 2020_03_25_160738) do
 
   create_table "artworks", force: :cascade do |t|
     t.string "title"
-    t.string "category"
-    t.string "medium"
-    t.text "image"
-    t.text "comment"
     t.integer "gallery_id", null: false
+    t.integer "medium_id", null: false
+    t.integer "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_artworks_on_category_id"
     t.index ["gallery_id"], name: "index_artworks_on_gallery_id"
+    t.index ["medium_id"], name: "index_artworks_on_medium_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "gallery_id", null: false
-    t.integer "artwork_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["artwork_id"], name: "index_categories_on_artwork_id"
-    t.index ["gallery_id"], name: "index_categories_on_gallery_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -67,8 +63,6 @@ ActiveRecord::Schema.define(version: 2020_03_25_160738) do
 
   create_table "galleries", force: :cascade do |t|
     t.string "title"
-    t.string "category"
-    t.string "medium"
     t.text "description"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -78,12 +72,8 @@ ActiveRecord::Schema.define(version: 2020_03_25_160738) do
 
   create_table "media", force: :cascade do |t|
     t.string "name"
-    t.integer "gallery_id", null: false
-    t.integer "artwork_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["artwork_id"], name: "index_media_on_artwork_id"
-    t.index ["gallery_id"], name: "index_media_on_gallery_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -102,12 +92,10 @@ ActiveRecord::Schema.define(version: 2020_03_25_160738) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "artworks", "categories"
   add_foreign_key "artworks", "galleries"
-  add_foreign_key "categories", "artworks"
-  add_foreign_key "categories", "galleries"
+  add_foreign_key "artworks", "media"
   add_foreign_key "comments", "artworks"
   add_foreign_key "comments", "users"
   add_foreign_key "galleries", "users"
-  add_foreign_key "media", "artworks"
-  add_foreign_key "media", "galleries"
 end
