@@ -6,9 +6,7 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
-
-  resources :artworks
-  resources :comments
+  
   resources :media
   resources :categories
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
