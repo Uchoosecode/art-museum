@@ -5,6 +5,8 @@
     <h3>Gallery Description</h3>
     
     <p> <%= @gallery.description %> </p>
+    <%= link_to "Show Artwork", gallery_artworks_path(@gallery), method: :get %>
+
 </div>
 
 <div>

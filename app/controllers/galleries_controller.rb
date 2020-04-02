@@ -5,13 +5,12 @@ before_action :authenticate_user!, :current_user, :params_id, only: [:show, :edi
         @galleries = Gallery.all
     end
     
-    def show     
+    def show  
+        @galleries = Gallery.all   
     end
 
     def new
         @gallery = Gallery.new   
-        @gallery.categories.build
-        @gallery.media.build
     end
 
     def create
@@ -28,7 +27,7 @@ before_action :authenticate_user!, :current_user, :params_id, only: [:show, :edi
 private
 
     def gallery_params
-        params.require(:gallery).permit(:title, :user_id, :category_name, :medium_name)
+        params.require(:gallery).permit(:title, :user_id, :description)
     end
 
     def params_id

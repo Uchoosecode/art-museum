@@ -11,7 +11,9 @@
     <% end %></div>
 
 <div><p>Click below to add to your Gallery </p>
-<%= link_to "Add Gallery", new_gallery_path(@gallery) %></div><br> 
+<%= link_to "Add Gallery", new_gallery_path(@gallery) %>
+<%= link_to "All Galleries", galleries_path %>
+</div><br> 
 
 <div><%= button_to "Delete Account", user_registration_path, method: :delete %></div> 
 
