@@ -1,40 +1,26 @@
 class MediaController < ApplicationController
+# before_action :auth_user 
 
     def index
-        @media = Medium.all
+        @media = Medium.all    
     end
-
+   
     def new
-        @medium = Medium.new
+        @medium = Medium.new(media_params)
     end
 
-    def show
-        @medium = media_id
+    def create 
+        @medium = Medium.create(media_params)
     end
-
-    def create
-        @medium = Medium.create(media_params) 
-            if @medium.valid?
-
-                redirect_to media_path(@medium)
-
-            else
-                render :'/media/new'
-            end
-    end
-
-    def edit
-        @medium = media_id
-    end
-
 
 private
 
-    def media_params
-        params.require(:media).permit(:name)
-    end
+    # def auth_user
+    #     if current_user.email == ayako@email.com
+    #     end    
+    # end
 
-    def media_id
-        Medium.find(params[:id])        
+    def media_params
+        params.require(:media).permit(:medium_name, gallery_id: [], artwork_id: [])
     end
 end

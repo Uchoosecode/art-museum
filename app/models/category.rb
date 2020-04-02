@@ -1,4 +1,8 @@
 class Category < ApplicationRecord
-  belongs_to :gallery
-  belongs_to :artwork
+
+  has_many :galleries, through: :artworks
+  has_many :artworks
+
+  validates :name, presence: true
+  
 end

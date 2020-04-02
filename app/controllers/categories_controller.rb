@@ -1,48 +1,20 @@
 class CategoriesController < ApplicationController
 
     def index
-        @categories = Category.all
+        @categories = Category.all    
     end
-
+   
     def new
-        @category = Category.new
+        @category = Category.new(categories_params)
     end
 
-    def show
-        @category = category_id
+    def create 
+        @category = Category.create(categories_params)
     end
-
-    def create
-        @category = Category.create(category_params) 
-            if @category.valid?
-
-                redirect_to category_path(@category)
-
-            else
-                render :'/category/new'
-            end
-    end
-
-    def edit
-        @category = category_id
-    end
-
-    def update
-        if @category.update(category_params)
-            redirect_to category_path(@category)
-        else
-            render :'/category/edit'
-        end
-    end
-        
 
 private
-
-    def category_params
-        params.require(:category).permit(:name)
-    end
-
-    def category_id
-        Category.find(params[:id])        
-    end
+    
+   def categories_params
+       params.require(:category).permit(:name, gallery_id: [], artwork_id: [])
+   end
 end

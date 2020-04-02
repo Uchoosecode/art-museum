@@ -1,4 +1,6 @@
 class Medium < ApplicationRecord
+  validates :name, presence: true
 
-  belongs_to :artwork
+  has_many :artworks
+  has_many :galleries, through: :artworks
 end
