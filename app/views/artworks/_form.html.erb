@@ -14,7 +14,7 @@
         </div>
     <% end %>
 
-    <%= form_for([@gallery, @gallery.artworks.build], local: true) do |f|%>
+    <%= form_for([@gallery, @artwork], remote: false) do |f|%>
 
         <%= f.hidden_field :gallery_id %><br>
 

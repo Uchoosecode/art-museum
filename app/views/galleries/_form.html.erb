@@ -13,7 +13,7 @@
   </div>
 <% end %>
 
-<%= form_for @gallery do |f| %>
+<%= form_for(@gallery) do |f| %>
 
     <div class="field">
         <%= f.label :title %> <br>
@@ -34,3 +34,6 @@
     </div>
 
 <% end %>
+  <div>
+    <%= link_to "Back", user_session_path %>
+  </div>

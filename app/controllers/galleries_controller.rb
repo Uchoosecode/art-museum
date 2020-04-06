@@ -1,12 +1,12 @@
 class GalleriesController < ApplicationController
-before_action :authenticate_user!, :current_user, :params_id, only: [:show, :edit, :update]
+before_action :authenticate_user!
 
     def index
         @galleries = Gallery.all
     end
     
-    def show  
-        @galleries = Gallery.all   
+    def show
+         @gallery = params_id
     end
 
     def new
@@ -22,7 +22,24 @@ before_action :authenticate_user!, :current_user, :params_id, only: [:show, :edi
             render :new
         end
     end
+
+    def edit
+        @gallery = params_id
+    end
     
+    def update
+        @gallery = params_id
+        @gallery.update(gallery_params)
+
+        redirect_to gallery_path(@gallery)
+    end
+
+    def destroy
+        @gallery = params_id
+        @gallery.delete
+
+        redirect_to user_session_path
+    end
 
 private
 
@@ -31,6 +48,7 @@ private
     end
 
     def params_id
-        @gallery = Gallery.find(params[:id])
+        Gallery.find(params[:id])
     end
+
 end

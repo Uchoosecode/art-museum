@@ -6,9 +6,8 @@
 </div>
 
 <div>
-    <%= link_to "Show Artwork", gallery_artworks_path(@gallery), method: :get %>
+    <%= link_to "Show Artwork", gallery_artworks_path(@gallery, @artworks), method: :get %>
     <%= link_to "Add Artwork", new_gallery_artwork_path(@gallery) %>
-    <%= link_to "Delete Artwork", gallery_artwork_path(@gallery), method: :delete %>
 </div> <br>
 
 <div>
@@ -20,5 +19,4 @@
     <%= link_to "Back", user_session_path %> <br>
 </div>
 
-    
 

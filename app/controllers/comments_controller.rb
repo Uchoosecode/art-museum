@@ -1,48 +1,32 @@
 class CommentsController < ApplicationController
-
-    def index
-        @comments = Comment.all
-    end
-
+    before_action :artwork_params
+    
     def new
         @comment = Comment.new
     end
 
-    def show
-        @comment = comment_id
+    def create 
+        @comment = current_user.comments.create(comment_params)
+
+        redirect_to artwork_path(@artwork.id)
+       
     end
 
-    def create
-        @comment = Comment.create(category_params) 
-            if @comment.valid?
-
-                redirect_to comment_path(@comment)
-
-            else
-                render :'/comment/new'
-            end
+    def destroy
+        @comment = @artwork.comments.find(params[:id])
+        @comment.destroy
+       
+        redirect_to gallery_artworks_path(@artwork)
     end
-
-    def edit
-        @comment = comment_id
-    end
-
-    def update
-        if @comment.update(comment_params)
-            redirect_to comment_path(@comment)
-        else
-            render :'/comment/edit'
-        end
-    end
-        
 
 private
 
-    def comment_params
-        params.require(:comment).permit(:name)
+    def artwork_params
+        @artwork = Artwork.find_by_id(params[:artwork_id])
     end
 
-    def comment_id
-        comment.find(params[:id])        
+    def comment_params
+        params.require(:comment).permit(:artwork_id, :content)
     end
+    
 end

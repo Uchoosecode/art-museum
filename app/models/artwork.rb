@@ -8,5 +8,6 @@ class Artwork < ApplicationRecord
     has_many :comments
 
     validates :gallery_id, presence: true
+
 end
     
