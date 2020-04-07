@@ -2,15 +2,19 @@ class ArtworksController < ApplicationController
     before_action :gallery_params, only: [:new, :show, :index]
     
     def index
+       
         if params[:gallery_id]
            
             @artworks = @gallery.artworks
-            # binding.pry
-            
         else
             @artworks = Artwork.all
         end
         
+        # controller for search
+        if params[:search]
+            @search_term = params[:search]
+            @artworks = @artworks.search_by(@search_term)
+        end
     end
     
     def new
@@ -30,17 +34,12 @@ class ArtworksController < ApplicationController
     def show
         @artwork = Artwork.find(params[:id])
         @comment = @artwork.comments.build
-        # binding.pry
     end
-    
-    def destroy
-        
-    end
-    
+
 private 
     
     def gallery_params
-        @gallery = Gallery.find_by(id: params[:gallery_id])
+        @gallery = Gallery.find_by(params[:gallery_id])
     end
     
     def artwork_params

@@ -1,18 +1,25 @@
 
 <% if @gallery %>
-<h1><%= @gallery.title %> </h1>
+    <h1><%= @gallery.title %> </h1>
  <% else%>
-<h1>All Artwork </h1>
-<% end %>
+    <h1>All Artwork </h1>
+<% end %> <br>
 
-<div><% @artworks.each do |a|%>
+    <%# search bar %>
+    <div>
+    <%= form_tag artworks_path, role: "search", method: :get do %>
+        <%= text_field_tag :search, @search_term, placeholder: "Search..." %>
+        <% end%>
+    </div> <br>
 
-    <li><%= link_to a.title, artwork_path(a) %> </li>
-    <div style="width:400px; height:auto">
-    <li> <%= image_tag(a.image) %> </li>
-    </div>
+<ul>
+<div>
+    <% @artworks.each do |a|%>
+        <%= link_to a.title, artwork_path(a) %> <br>
+        <div style="width:400px; height:auto">
+            <%= image_tag(a.image) %> 
+        </div> <br>
 
-<% end %>
-        
-</div>
-<%= link_to "Back", galleries_path(@gallery) %>
+    <% end %>        
+</div> </ul><br>
+<%= link_to "Back", gallery_path(@gallery) %>

@@ -1,5 +1,6 @@
 <% @gallery = @artwork.gallery_id%>
 <h2><%= @artwork.title%></h2><br>
+
 <h2><%= image_tag(@artwork.image) %></h2>
 
 <%= render 'comments/form' %>
