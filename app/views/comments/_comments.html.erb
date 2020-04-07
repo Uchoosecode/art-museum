@@ -1,4 +1,7 @@
 <p><%= current_user.name %></p>
+<%# binding.pry %>
+<p><% @artwork.comments.all.each do |c| %></p> 
+    <div><%= c.content %></div> <br>
+    <div><%= c.created_at.strftime("%a-%m-%d-%Y") %></div> <br>
 
-<p><%= @comment.content %></p> 
-
+    <% end %>
